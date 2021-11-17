@@ -2,7 +2,6 @@
 body{
     background-color: rgb(209, 209, 233);
 }
-.img-container img{
-    width: 10%;
-
-}
+ .img-container img{
+     margin: 30px;
+ }
