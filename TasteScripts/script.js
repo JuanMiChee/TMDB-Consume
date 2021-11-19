@@ -24,54 +24,50 @@ function jsonProcessing(json) {
         img: 'https://image.tmdb.org/t/p/w92//' + fristMovie.poster_path + api_key,
         overview: fristMovie.overview,      
     }
-    function addImage(imgUrlPocessed) {                            //=> esta caja esta vacia hasta que 
-        var img = new Image();                                     //= <img></img>
-        img.src = imgUrlPocessed;                                  // <img src = imgUrlProcessed (se pasa como parametro) >
-        var imgElement = document.getElementById("img-container"); // traer la caja desde html
-        imgElement.appendChild(img);                               //asignarle como hijo un <img> a la caja de html
-    }
-
-
-
     let movieTwo = {
         title: secoundMovie.title,
         img: 'https://image.tmdb.org/t/p/w92//' + secoundMovie.poster_path + api_key,
         overview: secoundMovie.overview,      
     }
-    function addImage(imgUrlPocessedTwo) {                           
-        var img2 = new Image();                                    
-        img2.src = imgUrlPocessedTwo;                                 
-        var imgElement2 = document.getElementById("img-containertwo");
-        imgElement2.appendChild(img2);                              
-    }
-
-
-
     let movieThree = {
         title: tirthMovie.title,
         img: 'https://image.tmdb.org/t/p/w92//' + tirthMovie.poster_path + api_key,
         overview: tirthMovie.overview,      
     }
-    function addImage(imgUrlPocessedThree) {                           
+    let movieFour = {
+        title: fourthMovie.title,
+        img: 'https://image.tmdb.org/t/p/w92//' + fourthMovie.poster_path + api_key,
+        overview: fourthMovie.overview,      
+    }
+
+
+    function addImage(imgUrlPocessed) {                            //=> esta caja esta vacia hasta que 
+        var img = new Image();                                     //= <img></img>
+        img.src = imgUrlPocessed;                                  // <img src = imgUrlProcessed (se pasa como parametro) >
+        var imgElement = document.getElementById("img-container"); // traer la caja desde html
+        imgElement.appendChild(img);                               //asignarle como hijo un <img> a la caja de html
+    }    
+    function addImagetwo(imgUrlPocessedTwo) {                           
+        var img2 = new Image();                                    
+        img2.src = imgUrlPocessedTwo;                                 
+        var imgElement2 = document.getElementById("img-containertwo");
+        imgElement2.appendChild(img2);                              
+    }    
+    function addImagethree(imgUrlPocessedThree) {                           
         var img3 = new Image();                                    
         img3.src = imgUrlPocessedThree;                                 
         var imgElement3 = document.getElementById("img-containerthree");
         imgElement3.appendChild(img3);                              
     }
 
+   
+    function addImagefour(imgUrlPocessedFourth) {                           
+        var img4 = new Image();                                    
+        img4.src = imgUrlPocessedFourth;                                 
+        var imgElement4 = document.getElementById("img-containerfour");
+        imgElement4.appendChild(img4);                              
+    } 
 
-
-    let movieFour = {
-        title: fourthMovie.title,
-        img: 'https://image.tmdb.org/t/p/w92//' + fourthMovie.poster_path + api_key,
-        overview: fourthMovie.overview,      
-    }
-    // function addImage(imgUrlPocessedFourth) {                           
-    //     var img4 = new Image();                                    
-    //     img4.src = imgUrlPocessedFourth;                                 
-    //     var imgElement4 = document.getElementById("img-containerfour");
-    //     imgElement4.appendChild(img4);                              
-    // } 
 
     let titulo2 = document.getElementById("titulo2");
     titulo2.innerHTML = movieTwo.title;
@@ -83,17 +79,17 @@ function jsonProcessing(json) {
     let overview3 = document.getElementById("overview3");
     overview3.innerHTML = movieThree.overview;
 
-    // let titulo4 = document.getElementById("titulo4");
-    // titulo4.innerHTML = movieFour.title;
-    // let overview4 = document.getElementById("overview4");
-    // overview4.innerHTML = movieFour.overview;
+    let titulo4 = document.getElementById("titulo4");
+    titulo4.innerHTML = movieFour.title;
+    let overview4 = document.getElementById("overview4");
+    overview4.innerHTML = movieFour.overview;
     
     console.log(json.results[0]);
     console.log(movieOne.img);
     console.log(json);
     
     addImage(movieOne.img); // este valor se meterá en la función de abajo ( como un parametro ) es decir imUrlProcessed = movie.img
-    addImage(movieTwo.img);
-    addImage(movieThree.img);
-    addImage(movieFour.img);
+    addImagetwo(movieTwo.img);
+    addImagethree(movieThree.img);
+    addImagefour(movieFour.img);
 }
