@@ -1,24 +1,20 @@
 
-//secound pull request cuarto push
 const baseImgUrl= "http://image.tmdb.org/t/p/";
 const baseUrl = "https://api.themoviedb.org/3/movie/"
+const getLastestApiUrl = 'https://api.themoviedb.org/3/movie/top_rated?api_key=60586031e0e21153f7f67ca901fabc85&language=en-US&page=1'
+const getPopularApiUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=60586031e0e21153f7f67ca901fabc85&language=en-US&page=1';
 const api_key = '?api_key=60586031e0e21153f7f67ca901fabc85';
-const getLastestApiUrl = baseUrl + 'top_rated'+ api_key +'&language=en-US&page=1';
-const getPopularApiUrl = baseUrl + 'popular'+ api_key +'&language=en-US&page=1';
 
 
-fetchMovies(getLastestApiUrl).then(jsonProcessing);
-async function fetchMovies (url){   
-    let response = await fetch(url);
+function PopularMoviesGetter(){
+async function getPopularMovies (){   
+    let response = await fetch(getPopularApiUrl);
     console.log(response);
     return response.json();
 }
 
-function getPopularMoviesButtonTouched(){
-    fetchMovies(getPopularApiUrl).then(jsonProcessing);
-}
-
-function jsonProcessing(json) {
+getPopularMovies().then(jsonOneProcessing);
+function jsonOneProcessing(json) {
     let moviesFilter = json.results.filter(function(result){
         return result.original_language === 'en'
     })   
@@ -26,8 +22,7 @@ function jsonProcessing(json) {
     
     movieMap.forEach(drawMovie);
     console.log(moviesFilter);
-  }
-
+}
 
 function mapMovie(movieJson) {
     return {
@@ -55,6 +50,51 @@ function drawMovie(movie) {
 
     document.body.appendChild(div);
   }
+}
+
+
+
+function lastestMoviesGetter(){
+async function getLastestMovies (){   
+    let responseTwo = await fetch(getLastestApiUrl);
+    console.log(responseTwo);
+    return responseTwo.json();   
+}
+
+getLastestMovies().then(jsonTwoProcessing);
+function jsonTwoProcessing(json) {
+    let moviesTwo = json.results.map(mapMovieTwo);
+    console.log(moviesTwo);
+    moviesTwo.forEach(drawMovieTwo);
+}
+
+function mapMovieTwo(movieJsonTwo) {
+    return {
+        title: movieJsonTwo.title,
+        imgUrl: 'https://image.tmdb.org/t/p/w154//' + movieJsonTwo.poster_path + api_key,
+        overview: movieJsonTwo.overview,      
+    }
+}
+
+function drawMovieTwo(movieTwo) {
+    let div = document.createElement('div');
+
+    let movieTitleElement = document.createElement('h1');
+    movieTitleElement.innerHTML = movieTwo.title;
+
+    let movieDescriptionElement = document.createElement('h2');
+    movieDescriptionElement.innerHTML = movieTwo.overview;
+
+    let movieImageElement = document.createElement('img');                                    
+    movieImageElement.src = movieTwo.imgUrl;                                 
+
+    div.appendChild(movieTitleElement); 
+    div.appendChild(movieDescriptionElement); 
+    div.appendChild(movieImageElement);  
+
+    document.body.appendChild(div);
+  }  
+}
 
 function toggleMenu(){
         document.getElementById('toggle-bar').classList.toggle('active')
