@@ -5,6 +5,8 @@ const getLastestApiUrl = 'https://api.themoviedb.org/3/movie/top_rated?api_key=6
 const getPopularApiUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=60586031e0e21153f7f67ca901fabc85&language=en-US&page=1';
 const api_key = '?api_key=60586031e0e21153f7f67ca901fabc85';
 
+
+function PopularMoviesGetter(){
 async function getPopularMovies (){   
     let response = await fetch(getPopularApiUrl);
     console.log(response);
@@ -19,7 +21,6 @@ function jsonOneProcessing(json) {
     let movieMap = json.results.map(mapMovie);
     
     movieMap.forEach(drawMovie);
-    console.log(moviesFilter);
     console.log(moviesFilter);
 }
 
@@ -48,10 +49,12 @@ function drawMovie(movie) {
     div.appendChild(movieImageElement);  
 
     document.body.appendChild(div);
+  }
 }
 
 
 
+function lastestMoviesGetter(){
 async function getLastestMovies (){   
     let responseTwo = await fetch(getLastestApiUrl);
     console.log(responseTwo);
@@ -90,7 +93,12 @@ function drawMovieTwo(movieTwo) {
     div.appendChild(movieImageElement);  
 
     document.body.appendChild(div);
+  }  
 }
+
+function toggleMenu(){
+        document.getElementById('toggle-bar').classList.toggle('active')
+    } 
 
 
 // https://image.tmdb.org/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg

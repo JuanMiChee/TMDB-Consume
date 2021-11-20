@@ -6,8 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="scriptP2.js"></script>
+    <link rel="stylesheet" href="./styleP2.css">
 </head>
 <body>
+    <div id="toggle-bar" >
+        <div class="toggle-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul>
+            <li onclick="lastestMoviesGetter()"><a href="#">lastest</a></li>
+            <li onclick="PopularMoviesGetter()"><a href="#">Popular</a></li>
+            <li><a href="#">Tv Show</a></li>
+            <li><a href="#">trailers</a></li>
+        </ul>
+    </div>
     
 </body>
 </html>
