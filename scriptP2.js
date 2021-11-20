@@ -1,8 +1,6 @@
 
-<<<<<<< HEAD
-//secound pull request cuarto pushdmdaagjkjk
-=======
->>>>>>> 7391f526320901a0dac33b7fe5fd482f426c525f
+//secound pull request cuarto pushdmdaagjkjkasfasfasfsf
+
 const baseImgUrl= "http://image.tmdb.org/t/p/";
 const baseUrl = "https://api.themoviedb.org/3/movie/"
 const getLastestApiUrl = 'https://api.themoviedb.org/3/movie/top_rated?api_key=60586031e0e21153f7f67ca901fabc85&language=en-US&page=1'
