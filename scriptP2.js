@@ -8,7 +8,6 @@ const getLastestApiUrl = baseUrl + 'top_rated'+ api_key +'&language=en-US&page=1
 const getPopularApiUrl = baseUrl + 'popular'+ api_key +'&language=en-US&page=1';
 
 
-fetchMovies(getLastestApiUrl).then(jsonProcessing);
 async function fetchMovies (url){   
     let response = await fetch(url);
     console.log(response);
@@ -17,6 +16,10 @@ async function fetchMovies (url){
 
 function getPopularMoviesButtonTouched(){
     fetchMovies(getPopularApiUrl).then(jsonProcessing);
+}
+
+function getLastestMoviesButtonTouched(){
+    fetchMovies(getLastestApiUrl).then(jsonProcessing);
 }
 
 function jsonProcessing(json) {
