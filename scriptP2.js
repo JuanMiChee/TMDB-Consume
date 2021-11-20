@@ -1,5 +1,5 @@
 
-//secound pull request tastegahhhahhhffh
+//secound pull request cuarto push
 const baseImgUrl= "http://image.tmdb.org/t/p/";
 const baseUrl = "https://api.themoviedb.org/3/movie/"
 const api_key = '?api_key=60586031e0e21153f7f67ca901fabc85';
