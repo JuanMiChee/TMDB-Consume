@@ -1,5 +1,3 @@
-
-
 const base_url= "http://image.tmdb.org/t/p/";
 const getLastestApiUrl = 'https://api.themoviedb.org/3/movie/top_rated?api_key=60586031e0e21153f7f67ca901fabc85&language=en-US&page=1'
 const getPopularApiUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=60586031e0e21153f7f67ca901fabc85&language=en-US&page=1';
@@ -51,8 +49,6 @@ function drawMovie(movie) {
     document.body.appendChild(div);
   }
 }
-
-
 
 function lastestMoviesGetter(){
 async function getLastestMovies (){   
