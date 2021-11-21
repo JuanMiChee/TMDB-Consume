@@ -1,11 +1,12 @@
 
-//secound pull request cuarto pushdmdaagjkjkasfasfasfsf
+
 
 const baseImgUrl= "http://image.tmdb.org/t/p/";
 const baseUrl = "https://api.themoviedb.org/3/movie/"
 const api_key = '?api_key=60586031e0e21153f7f67ca901fabc85';
 const getLastestApiUrl = baseUrl + 'top_rated'+ api_key +'&language=en-US&page=1';
 const getPopularApiUrl = baseUrl + 'popular'+ api_key +'&language=en-US&page=1';
+
 
 
 async function fetchMovies (url){   
