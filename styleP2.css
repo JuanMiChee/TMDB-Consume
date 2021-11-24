@@ -31,6 +31,7 @@
     position: absolute;
     left: 105%;
     top: 15px;
+    background: rgb(206, 206, 206);
 }
 
 .toggle-btn span {
@@ -44,4 +45,23 @@
 #toggle-bar.active{
     left: 0;
 }
+
+#movies-container h3{
+    color: red;
+}
+
+#popular-movies-box{
+    display: flex;
+    overflow:auto;
+    width: 80%;
+    height:300px;
+    margin: auto;
+}
+
+#movie-img-box{
+    margin: 20px;
+}
+
+
+
 

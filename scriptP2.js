@@ -3,11 +3,28 @@
 
 const baseImgUrl= "http://image.tmdb.org/t/p/";
 const baseUrl = "https://api.themoviedb.org/3/movie/"
-const api_key = '?api_key=60586031e0e21153f7f67ca901fabc85';
-const getLastestApiUrl = baseUrl + 'top_rated'+ api_key +'&language=en-US&page=1';
-const getPopularApiUrl = baseUrl + 'popular'+ api_key +'&language=en-US&page=1';
+const api_key = '60586031e0e21153f7f67ca901fabc85';
 
+const popularRuta = 'popular'
+const latestRuta = 'latest'
+const upcomingRuta = 'upcoming'
+const topRatedRuta = 'top_rated'
 
+makeUrl(popularRuta);
+makeUrl(latestRuta);
+makeUrl(upcomingRuta);
+makeUrl(topRatedRuta);
+
+function makeUrl(ruta){
+const myUrlWithParams = new URL(ruta, baseUrl); 
+
+myUrlWithParams.searchParams.append("language", "en-US");
+myUrlWithParams.searchParams.append("api_key", api_key);
+myUrlWithParams.searchParams.append("page", "1");
+
+console.log(myUrlWithParams.href);
+return myUrlWithParams.href;
+}
 
 async function fetchMovies (url){   
     let response = await fetch(url);
@@ -15,12 +32,51 @@ async function fetchMovies (url){
     return response.json();
 }
 
-function getPopularMoviesButtonTouched(){
-    fetchMovies(getPopularApiUrl).then(jsonProcessing);
+//dibujo de las peliculas populares del main
+
+fetchMovies(makeUrl(topRatedRuta)).then(jsonPopularProcessing);
+
+
+function jsonPopularProcessing(jsonPopular) {
+  let moviesFilter = jsonPopular.results.filter(function(result){
+      return result.original_language === 'en'
+  })   
+  let movieMap = jsonPopular.results.map(mapMovie);
+  
+  movieMap.forEach(drawPopularMovie);
+  console.log(moviesFilter);
 }
 
-function getLastestMoviesButtonTouched(){
-    fetchMovies(getLastestApiUrl).then(jsonProcessing);
+function drawPopularMovie(movie) {
+  let moviesContainer = document.getElementById('popular-movies-box');
+  let moviesImgBox = document.createElement('div');
+  
+  let movieImageElement = document.createElement('img');                                    
+  movieImageElement.src = movie.imgUrl;                                 
+
+  let movieTitleElement = document.createElement('h3');
+  movieTitleElement.innerHTML = movie.title;
+
+
+  
+  document.body.appendChild(moviesContainer);
+  moviesContainer.appendChild(moviesImgBox)
+  moviesImgBox.appendChild(movieImageElement);  
+  moviesImgBox.appendChild(movieTitleElement); 
+  
+}
+//dibujo de las peliculas populares del main
+
+function getLastestMoviesButton(){
+    fetchMovies(makeUrl(latestRuta)).then(jsonProcessing);
+}
+
+function getPopularMoviesButton(){
+    fetchMovies(makeUrl(popularRuta)).then(jsonProcessing);
+}
+
+function getUpcommingMoviesButton(){
+    fetchMovies(makeUrl(upcomingRuta)).then(jsonProcessing);
 }
 
 function jsonProcessing(json) {
@@ -28,43 +84,41 @@ function jsonProcessing(json) {
         return result.original_language === 'en'
     })   
     let movieMap = json.results.map(mapMovie);
-    
+    console.log(moviesFilter)
     movieMap.forEach(drawMovie);
-    console.log(moviesFilter);
   }
-
 
 function mapMovie(movieJson) {
     return {
         title: movieJson.title,
-        imgUrl: 'https://image.tmdb.org/t/p/w154//' + movieJson.poster_path + api_key,
+        imgUrl: 'https://image.tmdb.org/t/p/w154//' + movieJson.poster_path +'?'+ api_key,
         overview: movieJson.overview,      
     }
 }
 
 function drawMovie(movie) {
-    let div = document.createElement('div');
+    let moviesContainer = document.getElementById('movies-container');
+    let moviesImgBox = document.createElement('div');
 
-    let movieTitleElement = document.createElement('h1');
+    let movieTitleElement = document.createElement('h3');
     movieTitleElement.innerHTML = movie.title;
-
-    let movieDescriptionElement = document.createElement('h2');
-    movieDescriptionElement.innerHTML = movie.overview;
 
     let movieImageElement = document.createElement('img');                                    
     movieImageElement.src = movie.imgUrl;                                 
-
-    div.appendChild(movieTitleElement); 
-    div.appendChild(movieDescriptionElement); 
-    div.appendChild(movieImageElement);  
-
-    document.body.appendChild(div);
+    
+    moviesContainer.appendChild(moviesImgBox); 
+    moviesImgBox.appendChild(movieImageElement);  
+    moviesImgBox.appendChild(movieTitleElement);
+    
+    document.body.appendChild(moviesContainer);
   }
 
 function toggleMenu(){
-        document.getElementById('toggle-bar').classList.toggle('active')
-    } 
+    document.getElementById('toggle-bar').classList.toggle('active');
+} 
 
 
-// https://image.tmdb.org/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg
-//https://api.themoviedb.org/3/movie/15/videos?api_key=60586031e0e21153f7f67ca901fabc85&language=en-US
+
+
+
+ 
