@@ -47,24 +47,6 @@ function jsonPopularProcessing(jsonPopular) {
   console.log(moviesFilter);
 }
 
-function drawPopularMovie(movie) {
-  let moviesContainer = document.getElementById('popular-movies-box');
-  let moviesImgBox = document.createElement('div');
-  
-  let movieImageElement = document.createElement('img');                                    
-  movieImageElement.src = movie.imgUrl;                                 
-
-  let movieTitleElement = document.createElement('h3');
-  movieTitleElement.innerHTML = movie.title;
-
-
-  
-  document.body.appendChild(moviesContainer);
-  moviesContainer.appendChild(moviesImgBox)
-  moviesImgBox.appendChild(movieImageElement);  
-  moviesImgBox.appendChild(movieTitleElement); 
-  
-}
 //dibujo de las peliculas populares del main
 
 function getLastestMoviesButton(){
@@ -85,7 +67,7 @@ function jsonProcessing(json) {
     })   
     let movieMap = json.results.map(mapMovie);
     console.log(moviesFilter)
-    movieMap.forEach(drawMovie);
+    movieMap.forEach(drawAllMovie);
   }
 
 function mapMovie(movieJson) {
@@ -96,8 +78,12 @@ function mapMovie(movieJson) {
     }
 }
 
-function drawMovie(movie) {
-    let moviesContainer = document.getElementById('movies-container');
+// var htmlImgId = 'movies-img-box';
+var htmlPopularId = 'popular-movies-box';
+var htmlContainerId = 'movies-container';
+
+function drawMovie(movie, htmlId) {
+    let moviesContainer = document.getElementById(htmlId);
     let moviesImgBox = document.createElement('div');
 
     let movieTitleElement = document.createElement('h3');
@@ -109,16 +95,19 @@ function drawMovie(movie) {
     moviesContainer.appendChild(moviesImgBox); 
     moviesImgBox.appendChild(movieImageElement);  
     moviesImgBox.appendChild(movieTitleElement);
-    
-    document.body.appendChild(moviesContainer);
-  }
+}
 
-function toggleMenu(){
-    document.getElementById('toggle-bar').classList.toggle('active');
+function drawPopularMovie(movie) {
+    drawMovie(movie, htmlPopularId);   
+} 
+
+function drawAllMovie(movie) {
+    drawMovie(movie, htmlContainerId);  
 } 
 
 
+function toggleMenu(){
+    document.getElementById('toggle-bar').classList.toggle('active')
+} 
 
 
-
- 
