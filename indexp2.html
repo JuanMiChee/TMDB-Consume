@@ -7,6 +7,7 @@
     <title>Document</title>
     <script src="scriptP2.js"></script>
     <link rel="stylesheet" href="./styleP2.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <div id="toggle-bar" >
@@ -16,12 +17,26 @@
             <span></span>
         </div>
         <ul>
-            <li onclick="getLastestMoviesButtonTouched()"><a href="#">lastest</a></li>
-            <li onclick="getPopularMoviesButtonTouched()"><a href="#">Popular</a></li>
-            <li><a href="#">Tv Show</a></li>
-            <li><a href="#">trailers</a></li>
+            <li onclick="getPopularMoviesButton()"><a href="#">Popular</a></li>
+            <li onclick="getLastestMoviesButton()"><a href="#">lastest</a></li>
+            <li onclick="getTopRatedButton()"><a href="#">Top Rated</a></li>           
+            <li onclick="getUpcommingMoviesButton()"><a href="#">trailers</a></li>
         </ul>
     </div>
+
     
+    <div id="popular-movies-box"></div>
+    <!-- <div id="movies-img-box"></div> -->
+    <div id="movies-container"></div>
+    <!-- <div id="movie-tittle-box"></div> -->  
+
+    <div class="container mt-5">
+        <h1>buscador con vainas</h1>
+        <input type="text" id="formulario" class="form-control my-2">
+        <div onclick="callFilter()" id="boton" class="btn btn-info mb-2">buscar</div>
+    </div>
+    <div id="resultado">
+        
+    </div>
 </body>
 </html>
